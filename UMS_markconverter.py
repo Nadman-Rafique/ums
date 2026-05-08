@@ -7,21 +7,26 @@ def marks(Tm):
     return  o
 def type_selection_ums(type_selection):
     if type_selection == 1 : 
-                Tm= int(input(" Input the total mark for the paper >>> "))
-                while True:                    
-                    o = marks(Tm) 
-                    Grades =[  [ o , 70 , 65 , 100 , 90 ], [ o , 64 , 55 , 89 , 80 ],[ o , 54 , 50 , 79 , 70  ],[ o , 49 , 45 , 69 , 60 ], [ o , 44 , 40 , 59 , 50 ], [ o , 39 , 30 , 49 , 40 ],[ o , 29 , 0 ,  39 , 0 ] ]
-                    for grade in Grades :
-                        if o >= grade[2]:
-                            ums = converter( o, grade[1],grade[2], grade[3],grade[4])
-                            if ums > 100:
-                                print("UMS Mark = 100")
-                            elif ums <= 100 :
-                                print(f"UMS mark = {ums}")
-                            break
-                    another = input("Do you want to convert another mark with the same boundaries (yes: y / No : N) ")
-                    if another != "y":
+            while True:
+                try:
+                    Tm= int(input(" Input the total mark for the paper >>> "))
+                    break
+                except ValueError:
+                    print("Invalid input. Please enter a valid integer for the total mark.")   
+            while True:                    
+                o = marks(Tm) 
+                Grades =[  [ o , 70 , 65 , 100 , 90 ], [ o , 64 , 55 , 89 , 80 ],[ o , 54 , 50 , 79 , 70  ],[ o , 49 , 45 , 69 , 60 ], [ o , 44 , 40 , 59 , 50 ], [ o , 39 , 30 , 49 , 40 ],[ o , 29 , 0 ,  39 , 0 ] ]
+                for grade in Grades :
+                    if o >= grade[2]:
+                        ums = converter( o, grade[1],grade[2], grade[3],grade[4])
+                        if ums > 100:
+                            print("UMS Mark = 100")
+                        elif ums <= 100 :
+                            print(f"UMS mark = {ums}")
                         break
+                another = input("Do you want to convert another mark with the same boundaries (yes: y / No : N) ")
+                if another != "y":
+                    break
                                            
     elif type_selection == 2 :
                 Tm= int(input(" Input the total mark for the paper >>> "))
@@ -43,9 +48,7 @@ def type_selection_ums(type_selection):
                             break
                     another = input("Do you want to convert another mark with the same boundaries (yes: y / No : N) ")
                     if another != "y":
-                        break
-                        
-                    
+                        break  
 def main():
     print("  Welcome to the Standard edexcel UMS Converter ") 
     subject = [ "1. Pure Mathematics" , "2. Physics" , " 3. Chemistry " , "4. Biology" , "5. Further Pure Mathematics" ]
