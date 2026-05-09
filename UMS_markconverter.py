@@ -1,11 +1,17 @@
 def converter(o,m,n,Rm,rm):
         return rm + abs((Rm - rm)*((o-n)/(m-n)))
  # o = obtained mark  m = max mark  n = minimum mark   Rm = Max of garde  rm = minimum of grade
-def marks(Tm):
+def marks(Tm,s,U):
+    m_su = {(1,1): 75, (1,2): 75, (1,3): 75, (1,4): 75, (1,5): 75, (1,6): 75, 
+            (2,1): 80, (2,2): 80, (2,3): 50, (2,4): 90, (2,5): 90, (2,6): 50,
+            (3,1): 80, (3,2): 80, (3,3): 50, (3,4): 90, (3,5): 90, (3,6): 50, 
+            (4,1): 80, (4,2): 80, (4,3): 50, (4,4): 90, (4,5): 90, (4,6): 50,
+            (5,1): 75, (5,2): 75, (5,3): 75, (5,4): 75, (5,5): 75, (5,6): 75}
+    y = m_su.get((s,U), Tm)
     x = int(input(" Obtained Marks:  "))
-    o = x*(75/Tm) 
+    o = x*(y/Tm) 
     return  o
-def type_selection_ums(type_selection):
+def type_selection_ums(type_selection,s,U):
     if type_selection == 1 : 
             while True:
                 try:
@@ -13,8 +19,9 @@ def type_selection_ums(type_selection):
                     break
                 except ValueError:
                     print("Invalid input. Please enter a valid integer for the total mark.")   
+                    break
             while True:                    
-                o = marks(Tm) 
+                o = marks(Tm,s,U) 
                 Grades =[  [ o , 70 , 65 , 100 , 90 ], [ o , 64 , 55 , 89 , 80 ],[ o , 54 , 50 , 79 , 70  ],[ o , 49 , 45 , 69 , 60 ], [ o , 44 , 40 , 59 , 50 ], [ o , 39 , 30 , 49 , 40 ],[ o , 29 , 0 ,  39 , 0 ] ]
                 for grade in Grades :
                     if o >= grade[2]:
@@ -36,7 +43,7 @@ def type_selection_ums(type_selection):
                 c = int(input(" Input the lower boundary for C >>  "))
                 d = int(input(" Input the lower boundary for D >>  "))
                 while True:
-                    o = marks(Tm)
+                    o = marks(Tm,s,U)
                     Grades =[  [ o , 70 , A, 100 , 90 ], [ o , A - 1 , a , 89 , 80 ],[ o , a -1  , b , 79 , 70  ],[ o , b-1 , c , 69 , 60 ], [ o , c -1  , d , 59 , 50 ], [ o , d - 1 , d-10 , 49 , 40 ],[ o , d-11 , 0 ,  39 , 0 ] ]
                     for grade in Grades :
                         if o >= grade[2]:
@@ -51,7 +58,7 @@ def type_selection_ums(type_selection):
                         break  
 def main():
     print("  Welcome to the Standard edexcel UMS Converter ") 
-    subject = [ "1. Pure Mathematics" , "2. Physics" , " 3. Chemistry " , "4. Biology" , "5. Further Pure Mathematics" ]
+    subject = [ "1. Pure Mathematics fuck" , "2. Physics" , " 3. Chemistry " , "4. Biology" , "5. Further Pure Mathematics" ]
     print(subject)
     s = int(input( "  Choose your subject from above (e.g 2 for Physics )>>> " ))
     if s == 1:
@@ -60,62 +67,21 @@ def main():
         if U == 1 :
             type_selection = int(input ( "1. Standard UMS or 2. Custom UMS >>  "))
             if type_selection == 1 :
-                type_selection_ums(type_selection)
+                type_selection_ums(type_selection,s,U)
             elif type_selection == 2 :
-                type_selection_ums(type_selection)
+                type_selection_ums(type_selection,s,U)
         elif U == 2 :
             type_selection = int(input ( "1. Standard UMS or 2. Custom UMS >>  "))
-            if type_selection == 1 : 
-                Tm = int(input(" Input the total mark for the paper >>> "))
-                o = marks(Tm)
-                Grades =[  [ o , 75 , 65 , 100 , 90 ], [ o , 64 , 55 , 89 , 80 ],[ o , 54 , 50 , 79 , 70  ],[ o , 49 , 45 , 69 , 60 ], [ o , 44 , 40 , 59 , 50 ], [ o , 39 , 30 , 49 , 40 ],[ o , 29 , 0 ,  39 , 0 ] ]
-                for grade in Grades :
-                    if o >= grade[2]:
-                        ums = converter( o, grade[1],grade[2], grade[3],grade[4])
-                        print(f"UMS Mark = {ums}")
-                        break
+            if type_selection == 1 :
+                type_selection_ums(type_selection,s,U)
             elif type_selection == 2 :
-                Tm = int(input(" Input the total mark for the paper >>> "))
-                o = marks(Tm)
-                A = int(input(" Input the lower boundary for A* >> "))
-                a = int(input(" Input the lower boundary for A >>  "))
-                b = int(input(" Input the lower boundary for B >>  "))
-                c = int(input(" Input the lower boundary for C >>  "))
-                d = int(input(" Input the lower boundary for D >>  "))
-                Grades =[  [ o , 75 , A, 100 , 90 ], [ o , A - 1 , a , 89 , 80 ],[ o , a -1  , b , 79 , 70  ],[ o , b-1 , c , 69 , 60 ], [ o , c -1  , d , 59 , 50 ], [ o , d - 1 , d-10 , 49 , 40 ],[ o , d-11 , 0 ,  39 , 0 ] ]
-                for grade in Grades :
-                    if o >= grade[2]:
-                        ums = converter( o, grade[1],grade[2], grade[3],grade[4])
-                        print(f"UMS Mark = {ums}")
-                        break
+                type_selection_ums(type_selection,s,U)
         elif U == 3 :
             type_selection = int(input ( "1. Standard UMS or 2. Custom UMS >>  "))
-            if type_selection == 1 : 
-                Tm = int(input(" Input the total mark for the paper >>> "))
-                o = marks(Tm)
-                Grades =[  [ o , 72 , 67 , 100 , 90 ], [ o , 66 , 60 , 89 , 80 ],[ o , 59 , 55 , 79 , 70  ],[ o , 54 , 47 , 69 , 60 ], [ o , 46 , 39 , 59 , 50 ], [ o , 38 , 30 , 49 , 40 ],[ o , 29 , 0 ,  39 , 0 ] ]
-                for grade in Grades :
-                    if o >= grade[2]:
-                        ums = converter( o, grade[1],grade[2], grade[3],grade[4])
-                        if ums > 100:
-                            print(f"UMS Mark = 100")
-                        elif ums <= 100 :
-                            print(f"UMS mark = {ums}")
-                        break
+            if type_selection == 1 :
+                type_selection_ums(type_selection,s,U)
             elif type_selection == 2 :
-                Tm = int(input(" Input the total mark for the paper >>> "))
-                o = marks(Tm)
-                A = int(input(" Input the lower boundary for A* >> "))
-                a = int(input(" Input the lower boundary for A >>  "))
-                b = int(input(" Input the lower boundary for B >>  "))
-                c = int(input(" Input the lower boundary for C >>  "))
-                d = int(input(" Input the lower boundary for D >>  "))
-                Grades =[  [ o , 75 , A, 100 , 90 ], [ o , A - 1 , a , 89 , 80 ],[ o , a -1  , b , 79 , 70  ],[ o , b-1 , c , 69 , 60 ], [ o , c -1  , d , 59 , 50 ], [ o , d - 1 , d-10 , 49 , 40 ],[ o , d-11 , 0 ,  39 , 0 ] ]
-                for grade in Grades :
-                    if o >= grade[2]:
-                        ums = converter( o, grade[1],grade[2], grade[3],grade[4])
-                        print(f"UMS Mark = {ums}")
-                        break
+                type_selection_ums(type_selection,s,U)
 
         
 if __name__ == "__main__":
