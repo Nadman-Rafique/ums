@@ -1,5 +1,7 @@
 def converter(o,m,n,Rm,rm):
-        return rm + abs((Rm - rm)*((o-n)/(m-n)))
+    if m == n:
+        return rm
+    return rm + abs((Rm - rm) * ((o - n) / (m - n)))
  # o = obtained mark  m = max mark  n = minimum mark   Rm = Max of garde  rm = minimum of grade
 def marks(Tm,s,U):
     # Tm = total mark  s = subject  U = unit
@@ -70,7 +72,7 @@ def type_selection_ums(type_selection,s,U):
                             else:
                                 print(f"UMS mark = {min(ums, 100)}")
                         break
-                another = input("Do you want to convert another mark with the same boundaries (yes: y / No : N) ")
+                another = input("Do you want to convert another mark with the same boundaries (yes: y / No : N) ").strip().lower()
                 if another != "y":
                     break
                                            
@@ -114,7 +116,7 @@ def type_selection_ums(type_selection,s,U):
                                 else:
                                     print(f"UMS mark = {min(ums, 100)}")
                             break
-                    another = input("Do you want to convert another mark with the same boundaries (yes: y / No : N) ")
+                    another = input("Do you want to convert another mark with the same boundaries (yes: y / No : N) ").strip().lower()
                     if another != "y":
                         break  
 def input_with_validation(prompt, error_message,Int_float):
@@ -170,6 +172,6 @@ if __name__ == "__main__":
     keep_running = "y" 
     while keep_running == "y":
         main()
-        keep_running = input("Do you want to run the program again (yes: y / No : N)")
+        keep_running = input("Do you want to run the program again (yes: y / No : N)").strip().lower()
     print("Program closed. Have a great day!")
     
